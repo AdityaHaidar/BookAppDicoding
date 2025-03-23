@@ -15,6 +15,7 @@ header {
     background: linear-gradient(245.59deg, #92b884 0%, #618758 28.53%, #1f5449 75.52%);
     padding: 16px;
     color: white;
+    width: 100%;
 }
 
 h1 {
@@ -39,6 +40,19 @@ section {
     border-radius: 8px;
     padding: 20px;
     box-shadow: 0 4px 8px #1f5449; 
+}
+
+@media screen and (max-width: 768px) {
+    .container {
+        display: flex;
+        flex-direction: column; /* Always vertical */
+        gap: 20px;
+        padding: 20px;
+    }
+    
+    section {
+        min-width: 100%; /* Full width on mobile */
+    }
 }
 
   
