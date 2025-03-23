@@ -1,0 +1,406 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway&display=swap');
+
+* {
+    box-sizing: border-box;
+}
+
+html, body {
+    font-family: Raleway, sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+header {
+    background: linear-gradient(245.59deg, #92b884 0%, #618758 28.53%, #1f5449 75.52%);
+    padding: 16px;
+    color: white;
+}
+
+h1 {
+    text-align: center;
+}
+
+span {
+    font-weight: bold;
+}
+
+.container {
+    display: grid;
+    gap: 20px; /* Jarak antar section */
+    padding: 20px;
+    grid-template-columns: 1fr 1fr; /* Dua kolom dengan lebar sama */
+    grid-auto-rows: auto; /* Baris menyesuaikan isi */
+    align-items: start; /* Agar tinggi section tidak dipaksa sama */
+}
+
+section {
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    padding: 20px;
+    box-shadow: 0 4px 8px #1f5449; 
+}
+
+  
+  /* Gaya untuk form tambah buku (gunakan gaya dari jawaban sebelumnya) */
+#tambahBuku h2, #cariBuku h2 {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+  
+#tambahBuku form div, #cariBuku form div {
+    margin-bottom: 15px;
+}
+  
+#tambahBuku form label, #cariBuku form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+  
+#tambahBuku form input[type="text"],
+#tambahBuku form input[type="number"],
+#cariBuku form input[type="text"],
+#cariBuku form input[type="number"]{
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+  
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 8px; /* Jarak antara checkbox dan label */
+    cursor: pointer;
+}
+
+/* Styling untuk menghilangkan checkbox default */
+.checkbox-container input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #1f5449; /* Warna biru */
+    border-radius: 5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+/* Tampilan ketika checkbox dicentang */
+.checkbox-container input[type="checkbox"]:checked {
+    background-color: #618758; /* Warna biru */
+    border-color: #618758;
+}
+
+/* Tambahkan tanda centang */
+.checkbox-container input[type="checkbox"]::before {
+    content: "✔";
+    font-size: 14px;
+    color: white;
+    display: none;
+}
+
+/* Tampilkan tanda centang ketika dicentang */
+.checkbox-container input[type="checkbox"]:checked::before {
+    display: block;
+}
+
+
+#tambahBuku form button[type="submit"], #cariBuku form button[type="submit"]{
+    display: block;
+    width: 100%;
+    margin: 20px auto 0;
+    padding: 10px 15px;
+    background-image: linear-gradient(245.59deg, #92b884 0%, #618758 28.53%, #1f5449 75.52%);
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-image 0.5s ease; /* Tambahkan transisi */
+}
+  
+#tambahBuku form button[type="submit"]:hover, #cariBuku form button[type="submit"]:hover {
+    background-image: linear-gradient(245.59deg, #1f5449 0%, #618758 71.47%, #92b884 100%); 
+    transform: translateY(-3px); /* Efek timbul */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Efek bayangan */
+}
+  
+  /* Gaya untuk daftar buku (contoh) */
+#belumBaca ul, #sudahBaca ul {
+    list-style: none;
+    padding: 0;
+}
+  
+#belumBaca li, #sudahBaca li {
+    margin-bottom: 10px;
+    padding: 10px;
+    background-color: #f0f0f0;
+    border-radius: 4px;
+}
+
+.modal {
+    display: none; /* Default: hidden */
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Transparan gelap */
+}
+
+/* When the modal is displayed, use flex for centering */
+.modal[style*="display: block"],
+.modal[style*="display:block"] {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background: white;
+    padding: 20px;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+    animation: fadeIn 0.3s ease-in-out;
+}
+
+/* Animasi modal muncul */
+@keyframes fadeIn {
+    from {
+        transform: scale(0.9);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+/* Tombol close */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    color: #888;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: black;
+}
+
+/* ===== FORM STYLES ===== */
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-group label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Styling untuk checkbox */
+.checkbox-group {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.checkbox-group input {
+    width: 20px;
+    height: 20px;
+    accent-color: #618758;
+}
+
+/* Tombol simpan */
+.btn-save {
+    width: 100%;
+    background-image: linear-gradient(245.59deg, #92b884 0%, #618758 28.53%, #1f5449 75.52%);
+    color: white;
+    border: none;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, background-image 0.5s ease; /* Tambahkan transisi */
+}
+
+.btn-save:hover {
+    background-image: linear-gradient(245.59deg, #1f5449 0%, #618758 71.47%, #92b884 100%); 
+    transform: translateY(-3px); /* Efek timbul */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Efek bayangan */
+}
+
+/* ===== STYLE CONTAINER BUKU ===== */
+.book-item {
+    background-color: #fff;
+    border-radius: 8px;
+    padding: 16px;
+    box-shadow: 0px 4px 8px #92b884;
+    margin-bottom: 16px;
+    transition: transform 0.2s ease-in-out;
+}
+
+.book-item:hover {
+    transform: scale(1.02);
+}
+
+/* ===== STYLE JUDUL BUKU ===== */
+.book-item h3 {
+    font-size: 20px;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+/* ===== STYLE TEKS PENULIS & TAHUN ===== */
+.book-item p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 8px;
+}
+
+/* ===== STYLE CONTAINER TOMBOL ===== */
+.button-container {
+    display: flex;
+    gap: 8px;
+    margin-top: 12px;
+}
+
+/* ===== STYLE TOMBOL ===== */
+.button-container button {
+    flex: 1;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+/* Tombol status */
+.button-container .toggle-btn {
+    background-color: #1f5449;
+    color: white;
+}
+
+.button-container .toggle-btn:hover {
+    background-color: #618758;
+}
+
+/* Tombol hapus */
+.button-container .delete-btn {
+    background-color: #800020;
+    color: white;
+}
+
+.button-container .delete-btn:hover {
+    background-color: #B14A3C;
+}
+
+/* Tombol edit */
+.button-container .edit-btn {
+    background-color: #A0522D;
+    color: white;
+}
+
+.button-container .edit-btn:hover {
+    background-color: #D2691E;
+}
+
+/* ===== STYLE OVERLAY MODAL ===== */
+
+
+/* ===== STYLE KONTEN MODAL ===== */
+.modal-content {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-width: 400px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    position: relative;
+}
+
+/* ===== STYLE TOMBOL CLOSE (X) ===== */
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 22px;
+    font-weight: bold;
+    color: #aaa;
+    cursor: pointer;
+}
+
+.close-btn:hover {
+    color: #000;
+}
+
+/* ===== STYLE JUDUL MODAL ===== */
+.modal h2 {
+    margin-bottom: 10px;
+    color: #333;
+    text-align: center;
+}
+
+/* ===== STYLE TEKS MODAL ===== */
+.modal p {
+    color: #555;
+    margin-bottom: 20px;
+}
+
+/* ===== STYLE CONTAINER TOMBOL ===== */
+.modal-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* ===== STYLE TOMBOL ===== */
+.modal-buttons button {
+    padding: 10px 16px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+/* Tombol Batal */
+.cancel-btn {
+    background-color: #ccc;
+    color: black;
+}
+
+.cancel-btn:hover {
+    background-color: #bbb;
+}
+
+/* Tombol Hapus */
+.delete-btn {
+    background-color: #800020;
+    color: white;
+}
+
+.delete-btn:hover {
+    background-color: #B14A3C;
+}
